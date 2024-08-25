@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 from datetime import date
 from optparse import OptionParser
 from colorama import Fore, Back, Style
-from time import strftime, localtime, time
+from time import strftime, localtime, sleep
 
 status_color = {
     '+': Fore.GREEN,
@@ -19,6 +19,7 @@ status_color = {
 
 lock = Lock()
 thread_count = cpu_count()
+sleep_time = 100
 
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.5615.50 Safari/537.36",
@@ -49,14 +50,17 @@ def getData(url):
 def multithreadedHandler(urls):
     url_responses = {}
     for url in urls:
-        data = getData(url)
-        if data:
-            with lock:
-                display(':', f"Parsed => {Back.MAGENTA}{url}{Back.RESET}")
-            url_responses[url] = data.text
-        else:
-            with lock:
-                display('-', f"Failed to Parse => {Back.YELLOW}{url}{Back.RESET}")
+        while True:
+            data = getData(url)
+            if data:
+                with lock:
+                    display(':', f"Parsed => {Back.MAGENTA}{url}{Back.RESET}")
+                url_responses[url] = data.text
+                break
+            else:
+                with lock:
+                    display('-', f"Failed to Parse => {Back.YELLOW}{url}{Back.RESET}")
+                sleep(sleep_time)
     return url_responses
 
 if __name__ == "__main__":
