@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 from datetime import date
 from optparse import OptionParser
 from colorama import Fore, Back, Style
-from time import strftime, localtime, time
+from time import strftime, localtime, sleep
 
 status_color = {
     '+': Fore.GREEN,
@@ -19,7 +19,8 @@ status_color = {
 }
 
 lock = Lock()
-thread_count = cpu_count()
+thread_count = 1 # cpu_count()
+sleep_time = 60
 
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.5615.50 Safari/537.36",
@@ -46,20 +47,26 @@ model= genai.GenerativeModel(model_name)
 def multithreadingHandler(contents):
     content_resposnes = {}
     for url, content in contents.items():
-        try:
-            content = content.replace('\\n', '\n')
-            response = model.generate_content(f"This is a content of the URL : {url}\nGenerate 10 Questions from it. Each question should be less than 80 words.\nGive the Questions in this format 1.QUESTION_CONTENT\nAnd Print nothing else\n\n{content}").text
-            questions = []
-            for line in response.split('\n'):
-                try:
-                    if line.split('.')[0].strip().isdigit():
-                        questions.append(line.split('.')[1].strip())
-                except:
-                    pass
-            content_resposnes[url] = questions
-            display(':', f"Generated Questions => {Back.MAGENTA}{url}{Back.RESET}")
-        except Exception as error:
-            display('-', f"Error While Generating Questions for {Back.MAGENTA}{url}{Back.RESET} => {Back.YELLOW}{error}{Back.RESET}")
+        while True:
+            try:
+                content = content.replace('\\n', '\n')
+                response = model.generate_content(f"This is a content of the URL : {url}\nGenerate 10 Questions from it. Each question should be less than 80 words.\nGive the Questions in this format 1.QUESTION_CONTENT\nAnd Print nothing else\n\n{content}").text
+                questions = []
+                for line in response.split('\n'):
+                    try:
+                        if line.split('.')[0].strip().isdigit():
+                            questions.append(line.split('.')[1].strip())
+                    except:
+                        pass
+                content_resposnes[url] = questions
+                display(':', f"Generated Questions => {Back.MAGENTA}{url}{Back.RESET}")
+                break
+            except Exception as error:
+                display('-', f"Error While Generating Questions for {Back.MAGENTA}{url}{Back.RESET} => {Back.YELLOW}{error}{Back.RESET}")
+                if "Resource has been exhausted" not in str(error):
+                    break
+                else:
+                    sleep(sleep_time)
     return content_resposnes
 
 if __name__ == "__main__":
