@@ -1,3 +1,5 @@
 requests
 beautifulsoup
 colorama
+google-generativeai
+milvus
