@@ -87,6 +87,5 @@ if __name__ == "__main__":
         responses.update(thread.get())
     pool.close()
     pool.join()
-    print(responses)
     with open(arguments.write, 'w') as file:
         json.dump(responses, file)
