@@ -1,0 +1,15 @@
+https://oosc-next.vercel.app/
+https://oosc-next.vercel.app/events
+https://oosc-next.vercel.app/competitions
+https://oosc-next.vercel.app/speakers
+https://oosc-next.vercel.app/sponsors
+https://oosc-next.vercel.app/calendar
+https://oosc-next.vercel.app/team
+https://oosc-next.vercel.app/merchandise
+https://oosc-next.vercel.app/registration
+https://oosc-next.vercel.app/contact
+https://oosc-next.vercel.app/talks
+https://oosc-next.vercel.app/workshops
+https://oosc-next.vercel.app/hackathon
+https://oosc-next.vercel.app/networking-dinner
+https://oosc-next.vercel.app/closing-ceremony
