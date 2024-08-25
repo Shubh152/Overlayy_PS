@@ -57,8 +57,9 @@ def multithreadingHandler(contents):
                 except:
                     pass
             content_resposnes[url] = questions
+            display(':', f"Generated Questions => {Back.MAGENTA}{url}{Back.RESET}")
         except Exception as error:
-            pass
+            display('-', f"Error While Generating Questions for {Back.MAGENTA}{url}{Back.RESET} => {Back.YELLOW}{error}{Back.RESET}")
     return content_resposnes
 
 if __name__ == "__main__":
