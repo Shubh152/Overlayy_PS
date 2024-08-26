@@ -36,7 +36,7 @@ def get_arguments(*args):
         parser.add_option(arg[0], arg[1], dest=arg[2], help=arg[3])
     return parser.parse_args()[0]
 
-api_key = "jina_c9d4dc8389de43508276ed745e1c1ff6qyZcKYSXgCZLTq4H33GLCYbiAE94"
+api_key = "jina_6be56a8b8ca740c3bacf216ecb55600cJeywIofFjVUFKGWPmMymci6QiOhO"
 jina_ai = "https://r.jina.ai/"
 
 def getData(url):
