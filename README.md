@@ -53,6 +53,8 @@ For Example:
 ```bash
 python3 jina_ai.py --url ariitk_urls.txt --write ariitk_content.json
 ```
+### Note
+We have to Paste our API Key of [Jina AI](https://jina.ai/) at Line 39
 ### generate_questions.py
 Generates questions from the Content Received from the URLs using Google Generative AI (Gemini-1.5) and saves it in a JSON File
 * '-c', "--content" : JSON File of URL Content
@@ -62,6 +64,8 @@ For Example:
 ```bash
 python3 generate_questions.py --content ariitk_content.json --write ariitk_questions.json
 ```
+### Note
+We have to Paste our API Key of [Google Gemini AI](https://aistudio.google.com/app/apikey) at Line 40
 ### similar_links.py
 Generates the Final JSON file containing questions and relevant Links using sklearn Python Package
 * '-c', "--content" : Content JSON File
