@@ -78,3 +78,13 @@ We used [Aerial Robotics, IIT Kanpur](https://ariitk.in) and all of the data fil
 * ariitk/ariitk_jina_api.txt : Content of URLs
 * ariitk/ariitk_generated_questions.json : Generated Questions from each URL
 * ariitk/ariitk_final_data.json : Containing Questions and Relevant Links for each URL
+## Automation
+**automate.sh** automates the running of the 5 Python Programs and saves the Final JSON File<br />
+Usage
+```bash
+./automate.sh website_url
+```
+For Example:
+```bash
+./automate.sh https://ariitk.in
+```
