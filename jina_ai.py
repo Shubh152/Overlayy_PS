@@ -44,14 +44,14 @@ jina_ai = "https://r.jina.ai/"
 def getData(url):
     response = requests.get(f"{jina_ai}{url}", headers={"Authorization": f"Bearer {api_key}"})
     if response.status_code == 200:
-        return response
+        return response, response.status_code
     else:
-        return False
+        return False, response.status_code
 def multithreadedHandler(urls):
     url_responses = {}
     for url in urls:
         while True:
-            data = getData(url)
+            data, status_code = getData(url)
             if data:
                 with lock:
                     display(':', f"Parsed => {Back.MAGENTA}{url}{Back.RESET}")
@@ -59,8 +59,11 @@ def multithreadedHandler(urls):
                 break
             else:
                 with lock:
-                    display('-', f"Failed to Parse => {Back.YELLOW}{url}{Back.RESET}")
-                sleep(sleep_time)
+                    display('-', f"Failed to Parse => {Back.MAGENTA}{url}{Back.RESET} : {Back.YELLOW}{status_code}{Back.RESET}")
+                if status_code == 402:
+                    sleep(sleep_time)
+                else:
+                    break
     return url_responses
 
 if __name__ == "__main__":
@@ -79,7 +82,7 @@ if __name__ == "__main__":
             display('-', f"Error Occured while Reading File {Back.MAGENTA}{arguments.url}{Back.RESET} => {Back.YELLOW}{error}{Back.RESET}")
             exit(0)
     if not arguments.write:
-        arguments.write = f"{date.today()} {strftime('%H_%M_%S', localtime())}.csv"
+        arguments.write = f"{date.today()} {strftime('%H_%M_%S', localtime())}.json"
     total_urls = len(arguments.url)
     url_divisions = [arguments.url[group*total_urls//thread_count: (group+1)*total_urls//thread_count] for group in range(thread_count)]
     pool = Pool(thread_count)
