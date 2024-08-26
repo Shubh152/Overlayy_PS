@@ -34,6 +34,7 @@ For Example:
 ```bash
 python3 crawler.py --url https://ariitk.in --write ariitk_crawler.json
 ```
+![Crawler](assets/images/crawler.png)
 ### json_to_txt.py
 Converts the JSON File obtained from Crawler to List of URLs.<br />
 Usage:
@@ -64,6 +65,7 @@ For Example:
 ```bash
 python3 generate_questions.py --content ariitk_content.json --write ariitk_questions.json
 ```
+![Generating Questions](assets/images/generating_questions.png)
 ### Note
 We have to Paste our API Key of [Google Gemini AI](https://aistudio.google.com/app/apikey) at Line 40
 ### similar_links.py
