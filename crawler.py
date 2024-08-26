@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 
-import requests, pickle, json
+import requests, json
 from multiprocessing import cpu_count, Pool, Lock
 from urllib.parse import urlparse, urljoin
 from bs4 import BeautifulSoup
 from datetime import date
 from optparse import OptionParser
 from colorama import Fore, Back, Style
-from time import strftime, localtime, time
+from time import strftime, localtime
 
 status_color = {
     '+': Fore.GREEN,

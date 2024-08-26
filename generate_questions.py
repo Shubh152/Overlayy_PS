@@ -1,10 +1,8 @@
 #! /usr/bin/env python3
 
-import requests, pickle, json
+import json
 import google.generativeai as genai
 from multiprocessing import cpu_count, Pool, Lock
-from urllib.parse import urlparse, urljoin
-from bs4 import BeautifulSoup
 from datetime import date
 from optparse import OptionParser
 from colorama import Fore, Back, Style
@@ -83,7 +81,7 @@ if __name__ == "__main__":
             display('-', f"Error Occured while Reading File {Back.MAGENTA}{arguments.content}{Back.RESET} => {Back.YELLOW}{error}{Back.RESET}")
             exit(0)
     if not arguments.write:
-        arguments.write = f"{date.today()} {strftime('%H_%M_%S', localtime())}.csv"
+        arguments.write = f"{date.today()} {strftime('%H_%M_%S', localtime())}.json"
     urls = list(arguments.content.keys())
     pool = Pool(thread_count)
     total_urls = len(urls)
