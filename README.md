@@ -78,6 +78,13 @@ We used [Aerial Robotics, IIT Kanpur](https://ariitk.in) and all of the data fil
 * ariitk/ariitk_jina_api.txt : Content of URLs
 * ariitk/ariitk_generated_questions.json : Generated Questions from each URL
 * ariitk/ariitk_final_data.json : Containing Questions and Relevant Links for each URL
+### Note
+We did a Similar Test on the [OOSC Website](https://oosc-next.vercel.app/) and its files are stored in *test_data/oosc* folder:
+* test_data/oosc/crawler_data.json : Data Collected by Crawler
+* test_data/oosc/urls.txt : List of URLs
+* test_data/oosc/jina_api.txt : Content of URLs
+* test_data/oosc/generated_questions.json : Generated Questions from each URL
+* test_data/oosc/oosc_final_data.json : Containing Questions and Relevant Links for each URL
 ## Automation
 **automate.sh** automates the running of the 5 Python Programs and saves the Final JSON File<br />
 Usage
