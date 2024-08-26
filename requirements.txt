@@ -1,5 +1,8 @@
 requests
-beautifulsoup
+beautifulsoup4
 colorama
 google-generativeai
 milvus
+pymilvus
+pymilvus[model]
+tensorflow
